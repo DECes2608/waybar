@@ -1,103 +1,96 @@
-/* --- Tema Renkleri --- */
-@define-color base   rgba(17, 17, 17, 0.75); /* Duvar kağıdını göstermesi için hafif şeffaf arka plan */
-@define-color text   #eeeeee;
-@define-color accent #cba6f7; /* Çoğu duvar kağıdına uyan yumuşak bir vurgu rengi. Kendi temana göre değiştirebilirsin. */
-@define-color hover  #ffffff;
-
+/* Genel Ayarlar ve Font */
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "FantasqueSansM Nerd Font Mono", monospace;
+    font-family: "JetBrainsMono Nerd Font", "Roboto", "Helvetica", sans-serif;
+    font-size: 13px;
     font-weight: bold;
-    font-size: 14px;
-    min-height: 0;
+    border-radius: 0px; /* Keskin kare kenarlar */
+    border: none;
+    min-height: 0; /* Taşıntıları önlemek için temel yükseklik kısıtlaması */
 }
 
+/* Ana Bar Arka Planı */
 window#waybar {
-    background: transparent;
-    color: @text;
+    background-color: #000000;
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
 }
 
-/* ── Sol ── */
+/* Çalışma Alanları (Workspaces) - Taşmayı önlemek için padding kısıldı */
 #workspaces {
-    background: @base;
-    border-radius: 16px;
-    margin: 5px 4px 5px 12px;
-    padding: 0 8px;
+    margin: 4px 0px;
 }
 
 #workspaces button {
-    color: #888888;
-    padding: 0 6px;
-    background: transparent;
-    transition: all 0.3s ease;
+    padding: 0 6px; /* 12px'den 6px'e düşürüldü */
+    background-color: #111111;
+    color: #aaaaaa;
+    border-right: 1px solid #222222;
 }
 
+#workspaces button.focused,
 #workspaces button.active {
-    color: @accent;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 #workspaces button:hover {
-    background: transparent;
-    color: @hover;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+    background-color: #222222;
+    color: #ffffff;
 }
 
-#window {
-    background: @base;
-    color: @accent;
-    border-radius: 16px;
-    margin: 5px 4px;
-    padding: 0 14px;
+#workspaces button.urgent {
+    background-color: #ffffff;
+    color: #000000;
+    animation: blink 0.5s alternate infinite;
 }
 
-/* ── Orta ── */
+/* Saat (Orta Kısım) */
 #clock {
-    background: @base;
-    color: @text;
-    border-radius: 16px;
-    margin: 5px 4px;
+    background-color: #ffffff;
+    color: #000000;
     padding: 0 16px;
+    margin: 4px 0px;
 }
 
-/* ── Sağ ── */
-#cpu {
-    background: @base;
-    color: @text;
-    border-radius: 16px 0 0 16px;
-    margin: 5px 0 5px 4px;
-    padding: 0 12px;
-}
-
-#memory {
-    background: @base;
-    color: @text;
-    margin: 5px 0;
-    padding: 0 12px;
+/* Sağ Modüller İçin Ortak Stil */
+#network,
+#pulseaudio,
+#tray {
+    padding: 0 10px;
+    margin: 4px 2px;
+    background-color: #111111;
+    color: #ffffff;
+    border: 1px solid #333333;
 }
 
 #network {
-    background: @base;
-    color: @text;
-    margin: 5px 0;
-    padding: 0 12px;
+    background-color: #222222;
 }
 
 #pulseaudio {
-    background: @base;
-    color: @text;
-    border-radius: 0 16px 16px 0;
-    margin: 5px 0;
-    padding: 0 12px;
-}
-
-#pulseaudio.muted {
-    color: #555555;
+    background-color: #1a1a1a;
 }
 
 #tray {
-    background: @base;
-    border-radius: 16px;
-    margin: 5px 12px 5px 4px;
-    padding: 0 12px;
+    background-color: #000000;
+    border: 1px solid #ffffff;
+}
+
+/* Tray İkonlarını Siyah/Beyaz Yapma Filtresi */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray image {
+    opacity: 0.5; /* İkonları %50 soluklaştırarak siyah-beyaza yakın, göz yormayan bir ton verir */
+    transition: opacity 0.2s ease-in-out;
+}
+
+#tray image:hover {
+    opacity: 1; /* Fareyle üzerine gelindiğinde orijinal rengine döner */
+}
+
+#tray > .active,
+#tray > .needs-attention {
+    background-color: #ffffff;
 }
