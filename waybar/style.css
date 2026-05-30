@@ -19,6 +19,7 @@ window#waybar {
 }
 
 /* spacing */
+#custom-bluetooth,
 #cpu,
 #memory,
 #custom-power-mode,
@@ -51,7 +52,7 @@ window#waybar {
 
 /* workspace buttons */
 #workspaces button {
-    padding: 0 6px;
+    padding: 0 4px;
     background-color: #111111;
     color: #1a1a1a;
     border-right: 1px solid #222222;
